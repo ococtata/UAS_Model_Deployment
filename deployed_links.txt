@@ -1,0 +1,5 @@
+frontend:
+uas-model-deployment-frontend-production.up.railway.app
+
+backend:
+uas-model-deployment-backend-production-0313.up.railway.app

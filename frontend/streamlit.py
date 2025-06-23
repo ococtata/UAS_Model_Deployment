@@ -1,10 +1,11 @@
 import streamlit as st
 import requests
 import pandas as pd
+import os
 
 st.set_page_config(page_title="Final Project Model Deployment - Obesity Level Prediction")
 
-API_BASE_URL = "http://127.0.0.1:8000"
+API_BASE_URL = "https://uas-model-deployment-backend-production-0313.up.railway.app"
 
 def check_api():
     try:

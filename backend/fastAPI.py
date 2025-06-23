@@ -6,9 +6,9 @@ import pickle
 from fastapi.middleware.cors import CORSMiddleware
 
 try:
-    with open("best_model.pkl", "rb") as f:
+    with open("./model/best_model.pkl", "rb") as f:
         model = pickle.load(f)
-    with open('preprocessing_objects.pkl', 'rb') as f:
+    with open('./model/preprocessing_objects.pkl', 'rb') as f:
         preprocessing = pickle.load(f)
     print("Model and preprocessing objects loaded successfully!")
 except FileNotFoundError as e:
