@@ -26,23 +26,23 @@ app.add_middleware(
 )
 
 class ObesityPredict(BaseModel):
-    Age: float = Field(..., description="Age in years")
-    Height: float = Field(..., description="Height in meters")
-    Weight: float = Field(..., description="Weight in kg")
-    FCVC: float = Field(..., description="Frequency of vegetable consumption")
-    NCP: float = Field(..., description="Number of main meals")
-    CH2O: float = Field(..., description="Water consumption daily")
-    FAF: float = Field(..., description="Physical activity frequency")
-    TUE: float = Field(..., description="Time using technology devices")
+    Age: float
+    Height: float
+    Weight: float
+    FCVC: float
+    NCP: float
+    CH2O: float
+    FAF: float
+    TUE: float
     
-    Gender: str = Field(..., description="Gender: male or female")
-    family_history_with_overweight: str = Field(..., description="Family history: yes or no")
-    FAVC: str = Field(..., description="High caloric food consumption: yes or no")
-    SMOKE: str = Field(..., description="Smoking: yes or no")
-    SCC: str = Field(..., description="Calories consumption monitoring: yes or no")
-    MTRANS: str = Field(..., description="Transportation mode")
-    CAEC: str = Field(..., description="Consumption of food between meals: no, sometimes, frequently, always")
-    CALC: str = Field(..., description="Consumption of alcohol: no, sometimes, frequently, always")
+    Gender: str
+    family_history_with_overweight: str
+    FAVC: str
+    SMOKE: str
+    SCC: str
+    MTRANS: str
+    CAEC: str
+    CALC: str
 
 
 def preprocess_input(data: ObesityPredict):
