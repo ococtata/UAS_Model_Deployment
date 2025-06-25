@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 import numpy as np
 import pandas as pd
 import pickle
@@ -113,7 +113,7 @@ def preprocess_input(data: ObesityPredict):
         raise HTTPException(status_code=400, detail=f"Preprocessing error: {str(e)}")
 
 @app.get("/")
-def read_root():
+def status():
     return {
         "message": "Obesity prediction API is live!",
         "model_type": type(model).__name__,
@@ -141,12 +141,6 @@ def predict(data: ObesityPredict):
             "predicted_obesity_level": prediction,
             "confidence": round(confidence * 100, 2),
             "probabilities": {k: round(v * 100, 2) for k, v in probabilities.items()},
-            "input_summary": {
-                "age": data.Age,
-                "height": data.Height,
-                "weight": data.Weight,
-                "bmi": round(data.Weight / (data.Height ** 2), 2)
-            }
         }
         
     except Exception as e:

@@ -30,7 +30,6 @@ st.write("""This application predicts obesity level.
 
 if not check_api():
     st.error("API not running. Please start the FastAPI server first.")
-    st.code("uvicorn fastAPI:app --reload")
     st.stop()
 
 st.success("Connected to prediction API")
@@ -43,7 +42,7 @@ with col1:
     gender = st.selectbox("Gender", ["male", "female"])
     age = st.number_input("Age", min_value=10, max_value=100, value=19, step=1)
     height = st.number_input("Height (meters)", min_value=1.0, max_value=2.5, value=1.7, step=0.01)
-    weight = st.number_input("Weight (kg)", min_value=0, value=70)
+    weight = st.number_input("Weight (kg)", min_value=0.0, value=70.0, step=0.01)
 
 with col2:
     family_history = st.selectbox("Family history of overweight?", ["no", "yes"])
@@ -56,14 +55,14 @@ st.subheader("Daily Habits")
 col1, col2 = st.columns(2)
 
 with col1:
-    fcvc = st.slider("Vegetable consumption frequency (FCVC)", 1.0, 3.0, 2.0, 0.1)
+    fcvc = st.slider("Vegetable consumption frequency (FCVC)", 1.0, 3.0, 2.0, 0.01)
     ncp = st.slider("Number of main meals (NCP)", step=1, min_value=1, value=2)
-    ch2o = st.slider("Water consumption (liters/day) (CH20)", 1.0, 3.0, 2.0, 0.1)
-    faf = st.slider("Physical activity frequency (FAF)", 0.0, 3.0, 1.0, 0.1)
+    ch2o = st.slider("Water consumption (liters/day) (CH20)", 1.0, 3.0, 2.0, 0.01)
+    faf = st.slider("Physical activity frequency (FAF)", 0.0, 3.0, 1.0, 0.01)
 
 with col2:
     caec = st.selectbox("Eat between meals? (CAEC)", ["no", "sometimes", "frequently", "always"])
-    tue = st.slider("Technology use (hours/day) (TUE)", 0.0, 2.0, 1.0, 0.1)
+    tue = st.slider("Technology use (hours/day) (TUE)", 0.0, 2.0, 1.0, 0.01)
     calc = st.selectbox("Alcohol consumption (CALC)", ["no", "sometimes", "frequently", "always"])
     mtrans = st.selectbox("Main transportation (MTRANS)", ["walking", "bike", "public_transportation", "automobile", "motorbike"])
 
@@ -107,4 +106,3 @@ if st.button("Predict Obesity Level", type="primary"):
             
     else:
         st.error("Prediction failed!")
-        st.error(result.get('detail', 'Unknown error'))
